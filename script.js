@@ -69,6 +69,23 @@ const locations = {
       accent: "#ffda66",
     },
   },
+  "Whispering Tidepool": {
+    description:
+      "Moonlit pools cradle ancient shells, where the ocean hums forgotten lullabies.",
+    theme: {
+      bg: "linear-gradient(120deg, #0f1e2e, #2a4a5e)",
+      accent: "#7dd3e8",
+    },
+  },
+
+  "Cinderbloom Marsh": {
+    description:
+      "Volcanic soil births crimson blossoms that float on ashen streams.",
+    theme: {
+      bg: "linear-gradient(120deg, #221411, #4a2f28)",
+      accent: "#ff6b6b",
+    },
+  },
 };
 
 // Map display-location keys to fishDatabase keys
@@ -1085,15 +1102,15 @@ const rarityDisplay = {
 };
 
 const rarityColors = {
-  common: "#94a3b8",      // Slate Gray
-  uncommon: "#4ade80",    // Lime Green
-  rare: "#38bdf8",        // Cyan Blue
-  epic: "#a78bfa",        // Lavender Purple
-  legendary: "#fb7185",   // Rose Pink
-  mythic: "#f472b6",      // Hot Pink
-  secret1: "#fb923c",     // Orange
-  secret2: "#fbbf24",     // Amber
-  secret3: "#fde68a"      // Pale Gold
+  common: "#94a3b8", // Slate Gray
+  uncommon: "#4ade80", // Lime Green
+  rare: "#38bdf8", // Cyan Blue
+  epic: "#a78bfa", // Lavender Purple
+  legendary: "#fb7185", // Rose Pink
+  mythic: "#f472b6", // Hot Pink
+  secret1: "#fb923c", // Orange
+  secret2: "#fbbf24", // Amber
+  secret3: "#fde68a", // Pale Gold
 };
 
 const xpRewards = {
@@ -1203,7 +1220,8 @@ const elements = {
 // -----------------------------
 function formatCompactNumber(value) {
   const abs = Math.abs(value);
-  if (abs >= 1_000_000_000_000) return `${(value / 1_000_000_000_000).toFixed(2)}t`;
+  if (abs >= 1_000_000_000_000)
+    return `${(value / 1_000_000_000_000).toFixed(2)}t`;
   if (abs >= 1_000_000_000) return `${(value / 1_000_000_000).toFixed(2)}b`;
   if (abs >= 1_000_000) return `${(value / 1_000_000).toFixed(2)}m`;
   if (abs >= 1_000) return `${(value / 1_000).toFixed(2)}k`;
@@ -1307,7 +1325,10 @@ function applyTheme() {
   const { bg, accent } = loc.theme;
   document.documentElement.style.setProperty("--bg", bg);
   document.documentElement.style.setProperty("--accent", accent);
-  document.documentElement.style.setProperty("--accent-soft", hexToRGBA(accent, 0.2));
+  document.documentElement.style.setProperty(
+    "--accent-soft",
+    hexToRGBA(accent, 0.2)
+  );
 }
 
 function hexToRGBA(hex, alpha) {
@@ -1347,7 +1368,9 @@ function createShopItem(item, type) {
 
   let meta = "";
   if (type === "rod") {
-    meta = `Luck rating ${formatCompactNumber(item.luck)} · Speed +${formatCompactNumber(
+    meta = `Luck rating ${formatCompactNumber(
+      item.luck
+    )} · Speed +${formatCompactNumber(
       item.speed
     )}% · Capacity ${formatCompactNumber(item.weight)} KG`;
   } else {
@@ -1452,9 +1475,9 @@ function rollRarity() {
   const L = effectiveLuck(); // 0..700
 
   // Secrets get small additive boosts (no multiplicative explosion)
-  const s3 = Math.min(0.10, secretOdds.secret3 + L * 0.00000025); // up to ~0.17% @ cap
-  const s2 = Math.min(0.10, secretOdds.secret2 + L * 0.0000005);  // up to ~0.35% @ cap
-  const s1 = Math.min(0.10, secretOdds.secret1 + L * 0.000001);   // up to ~0.70% @ cap
+  const s3 = Math.min(0.1, secretOdds.secret3 + L * 0.00000025); // up to ~0.17% @ cap
+  const s2 = Math.min(0.1, secretOdds.secret2 + L * 0.0000005); // up to ~0.35% @ cap
+  const s1 = Math.min(0.1, secretOdds.secret1 + L * 0.000001); // up to ~0.70% @ cap
 
   let r = Math.random();
   if (r < s3) return "secret3";
@@ -1553,7 +1576,9 @@ function renderInventory() {
     tr.innerHTML = `
       <td><input type="checkbox" data-id="${item.id}" /></td>
       <td>${item.name}</td>
-      <td style="color:${rarityColors[item.rarityKey] ?? '#fff'}">${item.rarity}</td>
+      <td style="color:${rarityColors[item.rarityKey] ?? "#fff"}">${
+      item.rarity
+    }</td>
       <td>${formatWeight(item.weight)}</td>
       <td>${formatCoins(item.value)}</td>
       <td>${item.location}</td>
@@ -1575,9 +1600,9 @@ function sellFish(filterFn) {
 }
 
 function handleSellSelected() {
-  const ids = Array.from(elements.inventoryBody.querySelectorAll("input:checked")).map(
-    (cb) => cb.dataset.id
-  );
+  const ids = Array.from(
+    elements.inventoryBody.querySelectorAll("input:checked")
+  ).map((cb) => cb.dataset.id);
   sellFish((fish) => ids.includes(fish.id));
 }
 
