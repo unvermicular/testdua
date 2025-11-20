@@ -1,132 +1,145 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mythic Waters | Fishing Simulator</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css" />
-</head>
-<body>
-  <header class="hero">
-    <div class="hero-content">
-      <div>
-        <p class="eyebrow">Real-World Fishing Experience</p>
-        <h1>Fishing Simulator</h1>
-        <p class="subtitle">Travel between surreal biomes, master the rods, and discover 288 distinct fish that change the entire look of the cove you stand in.</p>
-      </div>
-      <div class="save-panel">
-        <button id="manual-save">Save</button>
-        <button id="export-save">Export Save</button>
-        <label class="import-label">
-          Import Save
-          <input type="file" id="import-save" accept="application/json" />
-        </label>
-      </div>
-    </div>
-    <div class="player-stats">
-      <div class="stat">
-        <p class="stat-label">Level</p>
-        <p class="stat-value"><span id="player-level">1</span></p>
-        <div class="progress">
-          <div class="progress-bar" id="xp-progress"></div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mythic Waters | Fishing Simulator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="hero">
+      <div class="hero-content">
+        <div>
+          <p class="eyebrow">Real-World Fishing Experience</p>
+          <h1>Fishing Simulator</h1>
+          <p class="subtitle">
+            Travel between surreal biomes, master the rods, and discover 288
+            distinct fish that change the entire look of the cove you stand in.
+          </p>
         </div>
-        <p class="progress-label"><span id="current-xp">0</span> / <span id="next-level-xp">1000</span> XP</p>
-      </div>
-      <div class="stat">
-        <p class="stat-label">Coins</p>
-        <p class="stat-value" id="coins">100</p>
-      </div>
-      <div class="stat">
-        <p class="stat-label">Total Luck</p>
-        <p class="stat-value" id="luck">10%</p>
-      </div>
-      <div class="stat">
-        <p class="stat-label">Line Speed</p>
-        <p class="stat-value" id="speed">0%</p>
-      </div>
-      <div class="stat">
-        <p class="stat-label">Rod Capacity</p>
-        <p class="stat-value" id="capacity">20 KG</p>
-      </div>
-    </div>
-  </header>
-
-  <main>
-    <section class="locations">
-      <h2>Locations</h2>
-      <p class="section-sub">Switch zones to refresh the entire atmosphere and fish availability.</p>
-      <div class="location-grid" id="location-grid"></div>
-    </section>
-
-    <section class="fishing-panel">
-      <div class="panel">
-        <h2>Fishing Action</h2>
-        <p id="location-description"></p>
-        <div class="catch-preview">
-          <p class="last-catch" id="last-catch">Cast to start fishing.</p>
-          <p class="line-status" id="line-status">Idle</p>
+        <div class="save-panel">
+          <button id="manual-save">Save</button>
+          <button id="export-save">Export Save</button>
+          <label class="import-label">
+            Import Save
+            <input type="file" id="import-save" accept="application/json" />
+          </label>
         </div>
-        <button class="primary" id="cast-button">Cast Line</button>
       </div>
-      <div class="panel inventory">
-        <div class="inventory-header">
-          <h2 class="catch">Inventory</h2>
-          <div class="inventory-actions">
-            <button id="sell-selected" class="secondary">Sell Selected</button>
-            <button id="sell-all" class="ghost">Sell All</button>
+      <div class="player-stats">
+        <div class="stat">
+          <p class="stat-label">Level</p>
+          <p class="stat-value"><span id="player-level">1</span></p>
+          <div class="progress">
+            <div class="progress-bar" id="xp-progress"></div>
+          </div>
+          <p class="progress-label">
+            <span id="current-xp">0</span> /
+            <span id="next-level-xp">1000</span> XP
+          </p>
+        </div>
+        <div class="stat">
+          <p class="stat-label">Coins</p>
+          <p class="stat-value" id="coins">100</p>
+        </div>
+        <div class="stat">
+          <p class="stat-label">Total Luck</p>
+          <p class="stat-value" id="luck">10%</p>
+        </div>
+        <div class="stat">
+          <p class="stat-label">Line Speed</p>
+          <p class="stat-value" id="speed">0%</p>
+        </div>
+        <div class="stat">
+          <p class="stat-label">Rod Capacity</p>
+          <p class="stat-value" id="capacity">20 KG</p>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="locations">
+        <h2>Locations</h2>
+        <p class="section-sub">
+          Switch zones to refresh the entire atmosphere and fish availability.
+        </p>
+        <div class="location-grid" id="location-grid"></div>
+      </section>
+
+      <section class="fishing-panel">
+        <div class="panel">
+          <h2>Fishing Action</h2>
+          <p id="location-description"></p>
+          <div class="catch-preview">
+            <p class="last-catch" id="last-catch">Cast to start fishing.</p>
+            <p class="line-status" id="line-status">Idle</p>
+          </div>
+          <button class="primary" id="cast-button">Cast Line</button>
+        </div>
+        <div class="inventory">
+          <div class="inventory-header">
+            <h2 class="catch">Inventory</h2>
+            <div class="inventory-actions">
+              <button id="sell-selected" class="secondary">
+                Sell Selected
+              </button>
+              <button id="sell-all" class="ghost">Sell All</button>
+            </div>
+          </div>
+          <div class="inventory-table-wrapper">
+            <table>
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>Fish</th>
+                  <th>Rarity</th>
+                  <th>Weight</th>
+                  <th>Value</th>
+                  <th>Location</th>
+                </tr>
+              </thead>
+              <tbody id="inventory-body"></tbody>
+            </table>
           </div>
         </div>
-        <div class="inventory-table-wrapper">
-          <table>
-            <thead>
-              <tr>
-                <th></th>
-                <th>Fish</th>
-                <th>Rarity</th>
-                <th>Weight</th>
-                <th>Value</th>
-                <th>Location</th>
-              </tr>
-            </thead>
-            <tbody id="inventory-body"></tbody>
-          </table>
+      </section>
+
+      <section class="shops">
+        <div class="panel">
+          <h2>Rod Shop</h2>
+          <div id="rod-shop" class="shop-list"></div>
+        </div>
+        <div class="panel">
+          <h2>Bait Shop</h2>
+          <div id="bait-shop" class="shop-list"></div>
+        </div>
+      </section>
+
+      <section class="log panel">
+        <h2>Activity Log</h2>
+        <ul id="activity-log"></ul>
+      </section>
+    </main>
+
+    <template id="shop-item-template">
+      <div class="shop-item">
+        <div>
+          <h3 class="item-name"></h3>
+          <p class="item-meta"></p>
+        </div>
+        <div class="shop-actions">
+          <p class="item-cost"></p>
+          <button class="ghost">Purchase</button>
         </div>
       </div>
-    </section>
+    </template>
 
-    <section class="shops">
-      <div class="panel">
-        <h2>Rod Shop</h2>
-        <div id="rod-shop" class="shop-list"></div>
-      </div>
-      <div class="panel">
-        <h2>Bait Shop</h2>
-        <div id="bait-shop" class="shop-list"></div>
-      </div>
-    </section>
-
-    <section class="log panel">
-      <h2>Activity Log</h2>
-      <ul id="activity-log"></ul>
-    </section>
-  </main>
-
-  <template id="shop-item-template">
-    <div class="shop-item">
-      <div>
-        <h3 class="item-name"></h3>
-        <p class="item-meta"></p>
-      </div>
-      <div class="shop-actions">
-        <p class="item-cost"></p>
-        <button class="ghost">Purchase</button>
-      </div>
-    </div>
-  </template>
-
-  <script src="script.js" type="module"></script>
-</body>
+    <script src="script.js" type="module"></script>
+  </body>
 </html>
